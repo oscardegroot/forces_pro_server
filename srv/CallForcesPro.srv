@@ -1,0 +1,6 @@
+std_msgs/Float64MultiArray xinit
+std_msgs/Float64MultiArray x0
+std_msgs/Float64MultiArray params
+---
+std_msgs/Float64MultiArray output
+int16 exit_code

@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+
+<launch>
+
+    <node pkg="forces_pro_server" exec="forces_pro_server_node" name="forces_pro_server_node" output="screen"/>
+
+</launch>  
