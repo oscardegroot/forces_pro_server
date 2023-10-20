@@ -1,20 +1,20 @@
-import sys
 
 from forces_pro_server.srv import CallForcesPro
 import rclpy
 from rclpy.node import Node
 
-# from forces_pro_server.solver.JackalFORCESNLPsolver.interface import JackalFORCESNLPsolver_py
-import numpy as np
-
+# An example of how to call the service
 class MinimalClientAsync(Node):
 
     def __init__(self):
         super().__init__('example_call_node')
         
-        self.cli = self.create_client(CallForcesPro, 'call_forces_pro')
+        self.cli = self.create_client(CallForcesPro, 'call_forces_pro') # Creates the client in ROS2
+        
         while not self.cli.wait_for_service(timeout_sec=1.0):
             self.get_logger().info('service not available, waiting again...')
+        
+        # Sets up the request
         self.req = CallForcesPro.Request()
 
     def send_request(self):
@@ -24,6 +24,7 @@ class MinimalClientAsync(Node):
         self.req.xinit.data = [0.] * 7 # insert here your sizes
         self.req.params.data = [0.] *5088 # insert here your sizes
         
+        # Call the service
         self.future = self.cli.call_async(self.req)
         rclpy.spin_until_future_complete(self, self.future)
         return self.future.result()
@@ -35,10 +36,9 @@ def main():
     minimal_client = MinimalClientAsync()
     response = minimal_client.send_request()
     
-    for i in range(response.output):
-        minimal_client.get_logger().info(
-            'Output %d: %f' %
-            (response.output[i]))
+    # Here we print the result
+    for i in range(len(response.output.data)):
+        minimal_client.get_logger().info('Output %d: %f' % (i, response.output.data[i]))
 
     minimal_client.destroy_node()
     rclpy.shutdown()
