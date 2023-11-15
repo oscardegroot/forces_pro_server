@@ -18,7 +18,7 @@ if(OPENMP_FOUND)
   message(WARNING "Compiling with OPENMP")
 endif()
 
-set(SYSTEM_TO_USE "Jackal")
+set(SOlVER_TO_USE "my_solver")
 
 ## DEPENDENCIES ##
 set(DEPENDENCIES
@@ -40,14 +40,14 @@ rosidl_generate_interfaces(${PROJECT_NAME}
 
 include_directories(
   include
-  solver/${SYSTEM_TO_USE}FORCESNLPsolver/include
+  solver/${SOlVER_TO_USE}/include
 )
 
 # The service provider
 add_executable(${PROJECT_NAME}_node 
   src/solver_service_node.cpp  
-  solver/${SYSTEM_TO_USE}FORCESNLPsolver/${SYSTEM_TO_USE}FORCESNLPsolver_interface.c
-  solver/${SYSTEM_TO_USE}FORCESNLPsolver/${SYSTEM_TO_USE}FORCESNLPsolver_model.c)
+  solver/${SOlVER_TO_USE}/${SOlVER_TO_USE}_interface.c
+  solver/${SOlVER_TO_USE}/${SOlVER_TO_USE}_model.c)
 target_include_directories(${PROJECT_NAME}_node
   PUBLIC
     "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"
@@ -58,7 +58,7 @@ ament_target_dependencies(${PROJECT_NAME}_node
 )
 rosidl_get_typesupport_target(cpp_typesupport_target ${PROJECT_NAME} "rosidl_typesupport_cpp")
 target_link_libraries(${PROJECT_NAME}_node # Link against the solver
-  ${PROJECT_SOURCE_DIR}/solver/${SYSTEM_TO_USE}FORCESNLPsolver/lib/lib${SYSTEM_TO_USE}FORCESNLPsolver.so
+  ${PROJECT_SOURCE_DIR}/solver/${SOlVER_TO_USE}/lib/lib${SOlVER_TO_USE}.so
   "${cpp_typesupport_target}"
 )
 
@@ -76,7 +76,7 @@ install(DIRECTORY include/
   DESTINATION include/${PROJECT_NAME})
   
 
-install(DIRECTORY solver/${SYSTEM_TO_USE}FORCESNLPsolver/include/
+install(DIRECTORY solver/${SOlVER_TO_USE}/include/
   DESTINATION include/${PROJECT_NAME})
 
 install(DIRECTORY launch
