@@ -3,9 +3,9 @@ This repository contains a small node to run a Forces Pro solver inside a ROS2 s
 ## Usage
 To adapt the service node to your example:
 
-- Put your solver in `solver/<your_solver>ForcesNLPsolver`. 
-- In `CMakelists.txt` change `set(SYSTEM_TO_USE "Jackal")` to `set(SYSTEM_TO_USE "<your_solver>")`.
-- In `include/solver_service_node.h` replace (ctrl+h) `my_solver` with `<your_solver>`, same in `src/solver_service_node.h`.
+- Put your solver in `solver/<your_solver>`. 
+- In `CMakelists.txt` change `set(SOlVER_TO_USE "my_solver")` to `set(SYSTEM_TO_USE "<your_solver>")`.
+- In `include/solver_service_node.h` replace (ctrl+h) `my_solver` with `<your_solver>`, same in `src/solver_service_node.cpp`.
 
 The example of how to call the service in Python is in `src/example_call.py`.
 
