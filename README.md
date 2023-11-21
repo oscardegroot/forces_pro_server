@@ -5,7 +5,7 @@ To adapt the service node to your example:
 
 - Put your solver in `solver/<your_solver>ForcesNLPsolver`. 
 - In `CMakelists.txt` change `set(SYSTEM_TO_USE "Jackal")` to `set(SYSTEM_TO_USE "<your_solver>")`.
-- In `include/solver_service_node.h` replace (ctrl+h) `JackalFORCESNLPsolver` with `<your_solver>ForcesNLPsolver`, same in `src/solver_service_node.h`.
+- In `include/solver_service_node.h` replace (ctrl+h) `my_solver` with `<your_solver>`, same in `src/solver_service_node.h`.
 
 The example of how to call the service in Python is in `src/example_call.py`.
 
