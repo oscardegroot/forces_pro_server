@@ -5,7 +5,7 @@
 
 extern "C"
 {
-    SOLVER_EXT_FUNC ext_func = &jackal_n3_01_H10_noSlack_adtool2forces;
+    SOLVER_EXT_FUNC ext_func = &my_solver_adtool2forces;
 }
 
 // Solver
@@ -58,7 +58,7 @@ void Solver::SolveServiceCallback(
     size_t j = 0;
     size_t num_var = sizeof(forces_output_.x01) / sizeof(*forces_output_.x01);
     
-    RCLCPP_INFO(logger, "number var: %d",num_var);
+    /**RCLCPP_INFO(logger, "number var: %d",num_var);*/
 
     response->output.data.resize((num_var*10));
     for (size_t i = 0; i < num_var; i++){
