@@ -5,7 +5,7 @@
 
 extern "C"
 {
-    SOLVER_EXT_FUNC ext_func = &jackal_n3_01_H10_noSlack_adtool2forces;
+    SOLVER_EXT_FUNC ext_func = &my_solver_adtool2forces;
 }
 
 // Solver
